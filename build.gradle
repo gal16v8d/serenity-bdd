@@ -1,6 +1,7 @@
-apply plugin: 'java-library'
-apply plugin: 'net.serenity-bdd.aggregator'
-
+plugins {
+	id 'net.serenity-bdd.serenity-gradle-plugin' version '3.3.0'
+	id 'java'
+}
 
 java {
 	toolchain {
@@ -22,23 +23,24 @@ repositories {
 	mavenCentral()
 }
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.80")
-    }
+ext {
+    junitVersion = '5.8.2'
+	lombokVersion = '1.18.24'
+	serenityVersion = '3.3.0'
+	slf4jVersion = '1.7.7'
 }
 
-
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.24'
-    implementation 'net.serenity-bdd:serenity-junit:2.0.80'
-    implementation 'net.serenity-bdd:serenity-cucumber:1.9.45'
-    implementation 'net.serenity-bdd:serenity-core:2.0.80'
-    implementation 'org.slf4j:slf4j-simple:1.7.7'
-    implementation 'com.google.guava:guava:23.0'
+    compileOnly "org.projectlombok:lombok:$lombokVersion"
+    implementation "net.serenity-bdd:serenity-junit5:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-cucumber:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-ensure:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
+    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
+    implementation "org.slf4j:slf4j-simple:$slf4jVersion"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
 }
 
 

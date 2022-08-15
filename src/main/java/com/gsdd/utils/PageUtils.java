@@ -1,5 +1,6 @@
 package com.gsdd.utils;
 
+import java.time.Duration;
 import lombok.experimental.UtilityClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,7 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public final class PageUtils {
 
   public static WebDriverWait awaitFor(WebDriver driver, int seconds) {
-    return new WebDriverWait(driver, seconds);
+    return new WebDriverWait(driver, Duration.ofSeconds(seconds));
   }
 
   public static void scrollElement(WebDriver driver, By element) {

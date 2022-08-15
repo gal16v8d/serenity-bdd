@@ -1,11 +1,11 @@
 package com.gsdd.steps.dekosas;
 
 import com.gsdd.dekosas.steps.DekosasPageStep;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 public class DekosasShopStepDefinition {
 
@@ -32,7 +32,7 @@ public class DekosasShopStepDefinition {
 
   @Then("^Should be on shopping car$")
   public void shouldBeOnShoppingCar() {
-    Assert.assertTrue(dekosasStep.getDekosasPageObject().getDriver()
+    Assertions.assertTrue(dekosasStep.getDekosasPageObject().getDriver()
         .findElement(dekosasStep.getDekosasPageObject().getCartSummary()).isDisplayed());
   }
 

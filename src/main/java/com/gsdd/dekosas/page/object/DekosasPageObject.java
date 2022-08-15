@@ -9,7 +9,7 @@ import org.openqa.selenium.By;
 @DefaultUrl("https://dekosas.com/co/")
 public class DekosasPageObject extends PageObject {
   
-  By myAccount = By.xpath("//p[text()='Mi Cuenta']");
+  By myAccount = By.xpath("//*[text()='Mi Cuenta']");
   By username = By.id("social_login_email");
   By password = By.id("social_login_pass");
   By buttonSubmit = By.id("bnt-social-login-authentication");

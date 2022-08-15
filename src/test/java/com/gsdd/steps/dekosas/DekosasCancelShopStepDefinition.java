@@ -2,12 +2,12 @@ package com.gsdd.steps.dekosas;
 
 import com.gsdd.dekosas.model.BuyData;
 import com.gsdd.dekosas.steps.DekosasPageStep;
-import com.gsdd.runners.DekosasRunner;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import com.gsdd.runners.cucumber.DekosasRunner;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import net.thucydides.core.annotations.Steps;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 public class DekosasCancelShopStepDefinition {
 
@@ -46,7 +46,7 @@ public class DekosasCancelShopStepDefinition {
 
   @Then("^Shop gets cancel$")
   public void shopGetsCancel() {
-    Assert.assertTrue(dekosasStep.getDekosasPageObject().getDriver()
+    Assertions.assertTrue(dekosasStep.getDekosasPageObject().getDriver()
         .findElement(dekosasStep.getDekosasPageObject().getCartEmpty()).isDisplayed());
   }
 

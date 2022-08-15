@@ -22,8 +22,7 @@ public class DekosasPageStep {
 
   @Step
   public void clickMyAccount(int wait) {
-    PageUtils.awaitFor(dekosasPageObject.getDriver(), wait)
-        .until(ExpectedConditions.elementToBeClickable(dekosasPageObject.getMyAccount()));
+    PageUtils.scrollElement(dekosasPageObject.getDriver(), dekosasPageObject.getMyAccount());
     dekosasPageObject.getDriver().findElement(dekosasPageObject.getMyAccount()).click();
   }
 
