@@ -25,10 +25,10 @@ repositories {
 
 ext {
 	cglibVersion = '3.3.0'
-    junitVersion = '5.8.2'
+    junitVersion = '5.9.0'
 	lombokVersion = '1.18.24'
 	serenityVersion = '3.3.0'
-	slf4jVersion = '1.7.7'
+	slf4jVersion = '1.7.36'
 }
 
 dependencies {
