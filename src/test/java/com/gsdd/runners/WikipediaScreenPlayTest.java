@@ -29,7 +29,7 @@ class WikipediaScreenPlayTest {
   private WikipediaPageObject pageObject = new WikipediaPageObject();
 
   @BeforeEach
-  public void setup() {
+  void setUp() {
     foxy.can(BrowseTheWeb.with(browser));
   }
 
