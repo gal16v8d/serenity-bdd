@@ -25,14 +25,6 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-	cglibVersion = '3.3.0'
-    junitVersion = '5.10.1'
-	lombokVersion = '1.18.30'
-	serenityVersion = '3.3.0'
-	slf4jVersion = '1.7.36'
-}
-
 dependencies {
 	annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"
