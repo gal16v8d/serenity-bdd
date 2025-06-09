@@ -1,2 +1,11 @@
-rootProject.name = 'serenity-bdd'
+pluginManagement {
+    plugins {
+        id 'net.serenity-bdd.serenity-gradle-plugin' version serenityPluginVersion
+        // Code formatter (spotlessCheck, spotlessApply)
+        id 'com.diffplug.spotless' version spotlessPluginVersion
+        // Dependency scan for CVE vulnerabilities
+        id 'org.owasp.dependencycheck' version dependencyCheckPluginVersion
+    }
+}
 
+rootProject.name = 'serenity-bdd'

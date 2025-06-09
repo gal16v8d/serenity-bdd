@@ -1,7 +1,18 @@
 plugins {
-	id 'net.serenity-bdd.serenity-gradle-plugin' version '3.3.0'
 	id 'java'
+    // Code formatter (spotlessCheck, spotlessApply)
+    id 'com.diffplug.spotless'
+    // Serenity capabilities
+    id 'net.serenity-bdd.serenity-gradle-plugin'
+    // Dependency scan for CVE vulnerabilities
+    id 'org.owasp.dependencycheck'
+    // Code check
+    id 'checkstyle'
 }
+
+apply from: 'gradle/checkstyle.gradle'
+apply from: 'gradle/dependencyCheck/dependencyCheck.gradle'
+apply from: 'gradle/spotless.gradle'
 
 java {
 	toolchain {
@@ -28,21 +39,32 @@ repositories {
 dependencies {
 	annotationProcessor "org.projectlombok:lombok:$lombokVersion"
     compileOnly "org.projectlombok:lombok:$lombokVersion"
-    implementation "net.serenity-bdd:serenity-junit5:$serenityVersion"
-    implementation "net.serenity-bdd:serenity-cucumber:$serenityVersion"
-    implementation "net.serenity-bdd:serenity-core:$serenityVersion"
-    implementation "net.serenity-bdd:serenity-ensure:$serenityVersion"
-    implementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
-    implementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
-    implementation "org.slf4j:slf4j-simple:$slf4jVersion"
+    implementation "org.slf4j:slf4j-api:$slf4jVersion"
+
     testAnnotationProcessor "org.projectlombok:lombok:$lombokVersion"
     testCompileOnly "org.projectlombok:lombok:$lombokVersion"
     testImplementation "org.junit.jupiter:junit-jupiter-api:$junitVersion"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitVersion"
-    testRuntimeOnly "cglib:cglib:$cglibVersion"
+    testImplementation "net.serenity-bdd:serenity-junit5:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-cucumber:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-core:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-ensure:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-screenplay:$serenityVersion"
+    testImplementation "net.serenity-bdd:serenity-screenplay-webdriver:$serenityVersion"
+    testImplementation "org.assertj:assertj-core:$assertJVersion"
+    testImplementation "ch.qos.logback:logback-classic:$logbackVersion"
 }
-
 
 test {
-    ignoreFailures = true
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    systemProperties System.getProperties()
 }
+
+serenity {
+    reports = ["single-page-html"]
+    // Specify the root package of any JUnit acceptance tests
+    testRoot="com.gsdd"
+}
+
+test.finalizedBy(aggregate)
